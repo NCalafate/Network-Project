@@ -1,0 +1,85 @@
+!
+version 12.4
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname Router
+!
+!
+!
+!
+!
+!
+!
+no ip cef
+no ipv6 cef
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface FastEthernet0/0
+ description Armazem
+ ip address 192.168.60.1 255.255.255.0
+ duplex auto
+ speed auto
+!
+interface FastEthernet0/0.10
+ encapsulation dot1Q 10
+ no ip address
+!
+interface FastEthernet0/1
+ description Ligacao Intermedio-Sucursal
+ ip address 192.168.40.2 255.255.255.252
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/1/0
+ ip address 192.168.30.2 255.255.255.252
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+router rip
+ network 192.168.30.0
+ network 192.168.40.0
+ network 192.168.60.0
+!
+ip classless
+!
+ip flow-export version 9
+!
+!
+!
+!
+!
+!
+!
+!
+line con 0
+!
+line aux 0
+!
+line vty 0 4
+ login
+!
+!
+!
+end
+
